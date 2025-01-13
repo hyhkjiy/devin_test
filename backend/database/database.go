@@ -27,7 +27,22 @@ func createTables() {
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 	);`
 
+	createArticlesTable := `
+	CREATE TABLE IF NOT EXISTS articles (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		title TEXT NOT NULL,
+		content TEXT NOT NULL,
+		user_id INTEGER NOT NULL,
+		publish_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY (user_id) REFERENCES users(id)
+	);`
+
 	_, err := DB.Exec(createUsersTable)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	_, err = DB.Exec(createArticlesTable)
 	if err != nil {
 		log.Fatal(err)
 	}

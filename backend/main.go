@@ -34,6 +34,13 @@ func main() {
 			users.Post("/register", handlers.RegisterUser)
 			users.Post("/login", handlers.LoginUser)
 		}
+
+		articles := api.Party("/articles")
+		{
+			articles.Post("/", handlers.CreateArticle)
+			articles.Get("/", handlers.ListArticles)
+			articles.Get("/{id:int64}", handlers.GetArticle)
+		}
 	}
 
 	app.Listen(":8000")
