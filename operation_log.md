@@ -60,3 +60,9 @@ CREATE TABLE articles (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 ```
+## Implementation Progress
+1. Implemented user registration endpoint with SQLite storage
+2. Added password hashing using bcrypt
+3. Configured CORS middleware for frontend integration
+4. Tested user registration functionality
+5. Using in-memory SQLite database for development
