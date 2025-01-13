@@ -9,7 +9,7 @@
   - [ ] Store article title, content, and publish time
 
 - [ ] Frontend Features
-  - [ ] Create user registration form with Tailwind CSS
+  - [x] Create user registration form with Tailwind CSS
   - [ ] Create user login form with Tailwind CSS
   - [ ] Create article submission form (authenticated users only)
   - [ ] Implement article list page showing titles and publish times
@@ -18,7 +18,7 @@
   - [ ] Style all components with Tailwind CSS
 
 - [ ] Testing & Documentation
-  - [ ] Test user registration flow
+  - [x] Test user registration flow
   - [ ] Test user login flow
   - [ ] Test article creation flow
   - [ ] Test article viewing flow
