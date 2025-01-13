@@ -33,6 +33,12 @@ func LoginUser(ctx iris.Context) {
 		return
 	}
 
+	if !user.VerifyPassword(req.Password) {
+		ctx.StatusCode(iris.StatusUnauthorized)
+		ctx.JSON(iris.Map{"error": "Invalid credentials"})
+		return
+	}
+
 	token, err := utils.GenerateToken(user.ID, user.Username)
 	if err != nil {
 		ctx.StatusCode(iris.StatusInternalServerError)
