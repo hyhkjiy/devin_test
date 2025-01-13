@@ -45,8 +45,10 @@ func (u *User) VerifyPassword(password string) bool {
 
 func GetUserByUsername(username string) (*User, error) {
 	var user User
-	query := `SELECT id, username, password_hash, created_at FROM users WHERE username = ?`
-	err := database.DB.QueryRow(query, username).Scan(&user.ID, &user.Username, &user.Password, &user.CreatedAt)
+	var passwordHash string
+	query := `SELECT id, username, password_hash FROM users WHERE username = ?`
+	err := database.DB.QueryRow(query, username).Scan(&user.ID, &user.Username, &passwordHash)
+	user.Password = passwordHash
 	if err != nil {
 		return nil, err
 	}
