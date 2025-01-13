@@ -14,12 +14,10 @@ func main() {
 	database.InitDB()
 
 	// CORS middleware
-	crs := cors.New().
-		AllowOrigin("*").
-		AllowCredentials().
-		AllowHeader("Accept", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization").
-		AllowMethod("POST", "GET", "OPTIONS", "PUT", "DELETE")
-	app.UseRouter(crs)
+	app.UseRouter(cors.New().
+		ExtensionName("cors").
+		ReferrerPolicy("no-referrer-when-downgrade").
+		AllowOrigins("*"))
 
 	// Routes
 	api := app.Party("/api")
