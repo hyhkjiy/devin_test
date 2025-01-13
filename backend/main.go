@@ -4,7 +4,6 @@ import (
 	"github.com/hyhkjiy/devin_test/backend/database"
 	"github.com/hyhkjiy/devin_test/backend/handlers"
 	"github.com/kataras/iris/v12"
-	"github.com/rs/cors"
 )
 
 func main() {
@@ -13,13 +12,19 @@ func main() {
 	// Initialize database
 	database.InitDB()
 
-	// CORS middleware
-	corsMiddleware := cors.New(cors.Options{
-		AllowedOrigins: []string{"*"},
-		AllowedMethods: []string{"POST", "GET", "OPTIONS", "PUT", "DELETE"},
-		AllowedHeaders: []string{"Accept", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization"},
+	// CORS configuration
+	app.AllowMethods(iris.MethodOptions)
+	app.Use(func(ctx iris.Context) {
+		ctx.Header("Access-Control-Allow-Origin", "*")
+		ctx.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+		ctx.Header("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+		
+		if ctx.Method() == iris.MethodOptions {
+			ctx.StatusCode(204)
+			return
+		}
+		ctx.Next()
 	})
-	app.WrapRouter(iris.FromStd(corsMiddleware.Handler))
 
 	// Routes
 	api := app.Party("/api")
