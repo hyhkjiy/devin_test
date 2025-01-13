@@ -32,6 +32,7 @@ func main() {
 		users := api.Party("/users")
 		{
 			users.Post("/register", handlers.RegisterUser)
+			users.Post("/login", handlers.LoginUser)
 		}
 	}
 

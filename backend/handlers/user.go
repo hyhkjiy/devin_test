@@ -2,8 +2,40 @@ package handlers
 
 import (
 	"github.com/hyhkjiy/devin_test/backend/models"
+	"github.com/hyhkjiy/devin_test/backend/utils"
 	"github.com/kataras/iris/v12"
 )
+
+func LoginUser(ctx iris.Context) {
+	var req models.LoginRequest
+	if err := ctx.ReadJSON(&req); err != nil {
+		ctx.StatusCode(iris.StatusBadRequest)
+		ctx.JSON(iris.Map{"error": "Invalid request format"})
+		return
+	}
+
+	user, err := models.GetUserByUsername(req.Username)
+	if err != nil {
+		ctx.StatusCode(iris.StatusUnauthorized)
+		ctx.JSON(iris.Map{"error": "Invalid credentials"})
+		return
+	}
+
+	if !user.VerifyPassword(req.Password) {
+		ctx.StatusCode(iris.StatusUnauthorized)
+		ctx.JSON(iris.Map{"error": "Invalid credentials"})
+		return
+	}
+
+	token, err := utils.GenerateToken(user.ID, user.Username)
+	if err != nil {
+		ctx.StatusCode(iris.StatusInternalServerError)
+		ctx.JSON(iris.Map{"error": "Failed to generate token"})
+		return
+	}
+
+	ctx.JSON(models.LoginResponse{Token: token})
+}
 
 func RegisterUser(ctx iris.Context) {
 	var req models.RegisterRequest
