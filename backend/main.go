@@ -14,7 +14,7 @@ func main() {
 	database.InitDB()
 
 	// CORS middleware
-	app.UseRouter(cors.Default())
+	app.UseRouter(cors.New())
 
 	// Routes
 	api := app.Party("/api")
