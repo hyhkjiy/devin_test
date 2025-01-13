@@ -46,11 +46,11 @@ func LoginUser(ctx iris.Context) {
 		return
 	}
 
-	ctx.JSON(models.LoginResponse{
-		Token: token,
-		User: models.UserResponse{
-			ID:       user.ID,
-			Username: user.Username,
+	ctx.JSON(iris.Map{
+		"token": token,
+		"user": iris.Map{
+			"id":       user.ID,
+			"username": user.Username,
 		},
 	})
 }
