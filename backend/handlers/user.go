@@ -42,18 +42,16 @@ func LoginUser(ctx iris.Context) {
 
 	ctx.StatusCode(iris.StatusOK)
 	ctx.ContentType("application/json")
-	_, err = ctx.JSON(iris.Map{
-		"token": token,
-		"user": iris.Map{
+	ctx.JSON(struct {
+		Token string         `json:"token"`
+		User  iris.Map       `json:"user"`
+	}{
+		Token: token,
+		User: iris.Map{
 			"id":       user.ID,
 			"username": user.Username,
 		},
 	})
-	if err != nil {
-		ctx.StatusCode(iris.StatusInternalServerError)
-		ctx.JSON(iris.Map{"error": "Failed to generate response"})
-		return
-	}
 }
 
 func RegisterUser(ctx iris.Context) {
