@@ -15,9 +15,10 @@ func main() {
 
 	// CORS middleware
 	crs := cors.New().
-		AllowedOrigins([]string{"*"}).
-		AllowedMethods([]string{"POST", "GET", "OPTIONS", "PUT", "DELETE"}).
-		AllowedHeaders([]string{"Accept", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization"})
+		AllowOrigin("*").
+		AllowCredentials().
+		AllowHeader("Accept", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization").
+		AllowMethod("POST", "GET", "OPTIONS", "PUT", "DELETE")
 	app.UseRouter(crs)
 
 	// Routes
