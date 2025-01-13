@@ -1,0 +1,40 @@
+package models
+
+import (
+	"github.com/hyhkjiy/devin_test/backend/database"
+	"golang.org/x/crypto/bcrypt"
+	"time"
+)
+
+type User struct {
+	ID        int64     `json:"id"`
+	Username  string    `json:"username"`
+	Password  string    `json:"-"`
+	CreatedAt time.Time `json:"created_at"`
+}
+
+type RegisterRequest struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type RegisterResponse struct {
+	ID       int64  `json:"id"`
+	Username string `json:"username"`
+}
+
+func (u *User) Create() error {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return err
+	}
+
+	query := `INSERT INTO users (username, password_hash) VALUES (?, ?)`
+	result, err := database.DB.Exec(query, u.Username, string(hashedPassword))
+	if err != nil {
+		return err
+	}
+
+	u.ID, _ = result.LastInsertId()
+	return nil
+}
