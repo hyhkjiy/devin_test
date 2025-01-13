@@ -3,10 +3,10 @@
   - [x] Implement user login with JWT authentication
   - [x] Create users table in SQLite database
 
-- [ ] Article Management
+- [x] Article Management
   - [x] Implement article creation (requires authentication)
-  - [ ] Create articles table in SQLite database
-  - [ ] Store article title, content, and publish time
+  - [x] Create articles table in SQLite database
+  - [x] Store article title, content, and publish time
 
 - [x] Frontend Features
   - [x] Create user registration form with Tailwind CSS
