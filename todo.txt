@@ -1,0 +1,26 @@
+- [ ] User Management
+  - [x] Next: Implement user registration with SQLite storage
+  - [ ] Implement user login with JWT authentication
+  - [ ] Create users table in SQLite database
+
+- [ ] Article Management
+  - [ ] Implement article creation (requires authentication)
+  - [ ] Create articles table in SQLite database
+  - [ ] Store article title, content, and publish time
+
+- [ ] Frontend Features
+  - [ ] Create user registration form with Tailwind CSS
+  - [ ] Create user login form with Tailwind CSS
+  - [ ] Create article submission form (authenticated users only)
+  - [ ] Implement article list page showing titles and publish times
+  - [ ] Implement article detail view page
+  - [ ] Add navigation between pages
+  - [ ] Style all components with Tailwind CSS
+
+- [ ] Testing & Documentation
+  - [ ] Test user registration flow
+  - [ ] Test user login flow
+  - [ ] Test article creation flow
+  - [ ] Test article viewing flow
+  - [ ] Document API endpoints
+  - [ ] Document setup instructions
