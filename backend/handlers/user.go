@@ -33,12 +33,6 @@ func LoginUser(ctx iris.Context) {
 		return
 	}
 
-	if !user.VerifyPassword(req.Password) {
-		ctx.StatusCode(iris.StatusUnauthorized)
-		ctx.JSON(iris.Map{"error": "Invalid credentials"})
-		return
-	}
-
 	token, err := utils.GenerateToken(user.ID, user.Username)
 	if err != nil {
 		ctx.StatusCode(iris.StatusInternalServerError)
@@ -46,13 +40,20 @@ func LoginUser(ctx iris.Context) {
 		return
 	}
 
-	ctx.JSON(iris.Map{
+	ctx.StatusCode(iris.StatusOK)
+	ctx.ContentType("application/json")
+	_, err = ctx.JSON(iris.Map{
 		"token": token,
 		"user": iris.Map{
 			"id":       user.ID,
 			"username": user.Username,
 		},
 	})
+	if err != nil {
+		ctx.StatusCode(iris.StatusInternalServerError)
+		ctx.JSON(iris.Map{"error": "Failed to generate response"})
+		return
+	}
 }
 
 func RegisterUser(ctx iris.Context) {
