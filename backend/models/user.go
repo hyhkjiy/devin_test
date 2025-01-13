@@ -28,8 +28,14 @@ type LoginRequest struct {
 	Password string `json:"password"`
 }
 
+type UserResponse struct {
+	ID       int64  `json:"id"`
+	Username string `json:"username"`
+}
+
 type LoginResponse struct {
-	Token string `json:"token"`
+	Token string      `json:"token"`
+	User  UserResponse `json:"user"`
 }
 
 func (u *User) VerifyPassword(password string) bool {

@@ -14,6 +14,12 @@ func LoginUser(ctx iris.Context) {
 		return
 	}
 
+	if req.Username == "" || req.Password == "" {
+		ctx.StatusCode(iris.StatusBadRequest)
+		ctx.JSON(iris.Map{"error": "Username and password are required"})
+		return
+	}
+
 	user, err := models.GetUserByUsername(req.Username)
 	if err != nil {
 		ctx.StatusCode(iris.StatusUnauthorized)
@@ -34,7 +40,13 @@ func LoginUser(ctx iris.Context) {
 		return
 	}
 
-	ctx.JSON(models.LoginResponse{Token: token})
+	ctx.JSON(models.LoginResponse{
+		Token: token,
+		User: models.UserResponse{
+			ID: user.ID,
+			Username: user.Username,
+		},
+	})
 }
 
 func RegisterUser(ctx iris.Context) {
