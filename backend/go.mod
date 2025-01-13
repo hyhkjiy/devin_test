@@ -1,6 +1,12 @@
-module github.com/hyhkjiy/devin_test
+module github.com/hyhkjiy/devin_test/backend
 
 go 1.23.4
+
+require (
+	github.com/kataras/iris/v12 v12.2.11
+	github.com/mattn/go-sqlite3 v1.14.24
+	golang.org/x/crypto v0.32.0
+)
 
 require (
 	github.com/BurntSushi/toml v1.3.2 // indirect
@@ -20,14 +26,12 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/kataras/blocks v0.0.8 // indirect
 	github.com/kataras/golog v0.1.11 // indirect
-	github.com/kataras/iris/v12 v12.2.11 // indirect
 	github.com/kataras/pio v0.0.13 // indirect
 	github.com/kataras/sitemap v0.0.6 // indirect
 	github.com/kataras/tunnel v0.0.4 // indirect
 	github.com/klauspost/compress v1.17.7 // indirect
 	github.com/mailgun/raymond/v2 v2.0.48 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
-	github.com/mattn/go-sqlite3 v1.14.24 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.26 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/schollz/closestmatch v2.1.0+incompatible // indirect
@@ -38,7 +42,6 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/yosssi/ace v0.0.5 // indirect
-	golang.org/x/crypto v0.32.0 // indirect
 	golang.org/x/exp v0.0.0-20240404231335-c0f41cb1a7a0 // indirect
 	golang.org/x/net v0.24.0 // indirect
 	golang.org/x/sys v0.29.0 // indirect
