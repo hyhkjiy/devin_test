@@ -14,10 +14,7 @@ func main() {
 	database.InitDB()
 
 	// CORS middleware
-	app.UseRouter(cors.New().
-		ExtensionName("cors").
-		ReferrerPolicy("no-referrer-when-downgrade").
-		AllowOrigins("*"))
+	app.UseRouter(cors.Default())
 
 	// Routes
 	api := app.Party("/api")
