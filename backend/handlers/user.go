@@ -46,12 +46,13 @@ func LoginUser(ctx iris.Context) {
 		return
 	}
 
-	userResponse := user.ToResponse()
-	response := models.LoginResponse{
+	ctx.JSON(models.LoginResponse{
 		Token: token,
-		User:  userResponse,
-	}
-	ctx.JSON(response)
+		User: models.UserResponse{
+			ID:       user.ID,
+			Username: user.Username,
+		},
+	})
 }
 
 func RegisterUser(ctx iris.Context) {

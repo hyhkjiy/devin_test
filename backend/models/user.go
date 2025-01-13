@@ -48,10 +48,10 @@ func GetUserByUsername(username string) (*User, error) {
 	var passwordHash string
 	query := `SELECT id, username, password_hash FROM users WHERE username = ?`
 	err := database.DB.QueryRow(query, username).Scan(&user.ID, &user.Username, &passwordHash)
-	user.Password = passwordHash
 	if err != nil {
 		return nil, err
 	}
+	user.Password = passwordHash
 	return &user, nil
 }
 
