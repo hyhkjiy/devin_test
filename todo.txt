@@ -1,6 +1,6 @@
-- [ ] User Management
+- [x] User Management
   - [x] Next: Implement user registration with SQLite storage
-  - [ ] Implement user login with JWT authentication
+  - [x] Implement user login with JWT authentication
   - [x] Create users table in SQLite database
 
 - [ ] Article Management
@@ -10,7 +10,7 @@
 
 - [ ] Frontend Features
   - [x] Create user registration form with Tailwind CSS
-  - [ ] Create user login form with Tailwind CSS
+  - [x] Create user login form with Tailwind CSS
   - [ ] Create article submission form (authenticated users only)
   - [ ] Implement article list page showing titles and publish times
   - [ ] Implement article detail view page

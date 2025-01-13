@@ -53,6 +53,13 @@ func GetUserByUsername(username string) (*User, error) {
 	return &user, nil
 }
 
+func (u *User) ToResponse() UserResponse {
+	return UserResponse{
+		ID:       u.ID,
+		Username: u.Username,
+	}
+}
+
 func (u *User) Create() error {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	if err != nil {
