@@ -1,7 +1,7 @@
 - [ ] User Management
   - [x] Next: Implement user registration with SQLite storage
   - [ ] Implement user login with JWT authentication
-  - [ ] Create users table in SQLite database
+  - [x] Create users table in SQLite database
 
 - [ ] Article Management
   - [ ] Implement article creation (requires authentication)
